@@ -11,9 +11,7 @@ const Analytics = ({ user }) => {
         { name: 'Rahul Kumar', initials: 'R', class: 'Class 9C', quizzes: '10/15', score: '67%', attendance: '78%', color: 'emerald', trendingDown: true },
     ];
 
-    const displayedStudents = isAdmin 
-        ? allStudents 
-        : allStudents.filter(student => student.class === loggedInTeacherClass);
+    const displayedStudents = isAdmin ? allStudents : allStudents.filter(student => student.class === loggedInTeacherClass);
 
     const totalQuizzes = isAdmin ? 1247 : 142;
     const averageScore = isAdmin ? '72%' : '85%';
@@ -28,31 +26,31 @@ const Analytics = ({ user }) => {
 
     return (
         <div className='fade-in space-y-6'>
-            <div className='flex items-center justify-between mb-6'>
-                <div className='flex items-center gap-4'>
-                    <select className='bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
+            <div className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-6'>
+                <div className='flex flex-wrap items-center gap-3 w-full lg:w-auto'>
+                    <select className='w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
                         <option>{isAdmin ? 'All Classes' : 'My Classes'}</option>
                     </select>
-                    <select className='bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
+                    <select className='w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
                         <option>All Subjects</option>
                     </select>
-                    <select className='bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
+                    <select className='w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
                         <option>This Month</option>
                     </select>
                 </div>
-                <div className='flex gap-2'>
-                    <button className='flex items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-xl transition text-sm'>
+                <div className='flex flex-wrap gap-2 w-full lg:w-auto'>
+                    <button className='flex-1 sm:flex-none flex justify-center items-center gap-2 px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white font-medium rounded-xl transition text-sm'>
                         <Download className="w-4 h-4" />
                         Export CSV
                     </button>
-                    <button className='flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl transition text-sm'>
+                    <button className='flex-1 sm:flex-none flex justify-center items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl transition text-sm'>
                         <FileText className="w-4 h-4" />
                         Export PDF
                     </button>
                 </div>
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-4 gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6'>
                 <StatCard icon={ClipboardCheck} title="Quizzes Taken" value={totalQuizzes} bg="rgba(59, 130, 246, 0.2)" iconColor={avatarMap.blue[0]} />
                 <StatCard icon={CheckCircle} title="Completion Rate" value="87%" bg="rgba(16, 185, 129, 0.2)" iconColor={avatarMap.emerald[0]} />
                 <StatCard icon={TrendingUp} title="Average Score" value={averageScore} bg="rgba(168, 85, 247, 0.2)" iconColor={avatarMap.purple[0]} />
@@ -110,8 +108,8 @@ const Analytics = ({ user }) => {
                                                 <span className='text-white font-medium whitespace-nowrap'>{student.name}</span>
                                             </div>
                                         </td>
-                                        <td className='px-6 py-4 text-slate-300'>{student.class}</td>
-                                        <td className='px-6 py-4 text-slate-300'>{student.quizzes}</td>
+                                        <td className='px-6 py-4 text-slate-300 whitespace-nowrap'>{student.class}</td>
+                                        <td className='px-6 py-4 text-slate-300 whitespace-nowrap'>{student.quizzes}</td>
                                         <td className='px-6 py-4'>
                                             <span style={{ color: student.trendingDown ? '#fbbf24' : '#34d399' }} className='font-medium'>{student.score}</span>
                                         </td>
@@ -163,9 +161,9 @@ function SubjectBar({ subject, score, completed, hexColors, bg }) {
             <div className='w-16 h-16 rounded-xl flex items-center justify-center shrink-0' style={{ backgroundColor: bg }}>
                 <span className='text-2xl font-bold' style={{ color: hexColors[0] }}>{score}</span>
             </div>
-            <div className='flex-1'>
-                <p className='text-white font-medium'>{subject}</p>
-                <p className='text-slate-400 text-sm'>{completed}</p>
+            <div className='flex-1 min-w-0'>
+                <p className='text-white font-medium truncate'>{subject}</p>
+                <p className='text-slate-400 text-sm truncate'>{completed}</p>
                 <div className='h-2 bg-slate-700 rounded-full mt-2 overflow-hidden'>
                     <div className='h-full rounded-full' style={{ width: score, backgroundColor: hexColors[1] }}></div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const Notifications = () => {
     const [notifType, setNotifType] = useState('announcement');
@@ -7,7 +7,6 @@ const Notifications = () => {
         e.preventDefault();
         alert('Notification Sent!');
     };
-
 
     return (
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-6 fade-in'>
@@ -24,18 +23,18 @@ const Notifications = () => {
                     </div>
                     <div>
                         <label className='block text-sm font-medium text-slate-300 mb-2'>Notification Type</label>
-                        <div className='grid grid-cols-3 gap-2'>
-                            <label className='cursor-pointer'>
+                        <div className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
+                            <label className='cursor-pointer w-full'>
                                 <input type="radio" name="notifType" value="announcement" checked={notifType === 'announcement'} onChange={() => setNotifType('announcement')} className='peer sr-only' />
-                                <div className='px-3 py-2 bg-slate-700 border-2 border-slate-600 rounded-lg text-center text-sm peer-checked:border-blue-500 peer-checked:bg-blue-500/10 transition'>Announcement</div>
+                                <div className='px-3 py-3 sm:py-2 bg-slate-700 border-2 border-slate-600 rounded-lg text-center text-sm peer-checked:border-blue-500 peer-checked:bg-blue-500/10 transition'>Announcement</div>
                             </label>
-                            <label className='cursor-pointer'>
+                            <label className='cursor-pointer w-full'>
                                 <input type="radio" name="notifType" value="reminder" checked={notifType === 'reminder'} onChange={() => setNotifType('reminder')} className='peer sr-only' />
-                                <div className='px-3 py-2 bg-slate-700 border-2 border-slate-600 rounded-lg text-center text-sm peer-checked:border-blue-500 peer-checked:bg-blue-500/10 transition'>Reminder</div>
+                                <div className='px-3 py-3 sm:py-2 bg-slate-700 border-2 border-slate-600 rounded-lg text-center text-sm peer-checked:border-blue-500 peer-checked:bg-blue-500/10 transition'>Reminder</div>
                             </label>
-                            <label className='cursor-pointer'>
+                            <label className='cursor-pointer w-full'>
                                 <input type="radio" name="notifType" value="quiz" checked={notifType === 'quiz'} onChange={() => setNotifType('quiz')} className='peer sr-only' />
-                                <div className='px-3 py-2 bg-slate-700 border-2 border-slate-600 rounded-lg text-center text-sm peer-checked:border-blue-500 peer-checked:bg-blue-500/10 transition'>Quiz Alert</div>
+                                <div className='px-3 py-3 sm:py-2 bg-slate-700 border-2 border-slate-600 rounded-lg text-center text-sm peer-checked:border-blue-500 peer-checked:bg-blue-500/10 transition'>Quiz Alert</div>
                             </label>
                         </div>
                     </div>
@@ -47,7 +46,7 @@ const Notifications = () => {
                         <label className='block text-sm font-medium text-slate-300 mb-2'>Message</label>
                         <textarea className='w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 h-32 resize-none' placeholder='Enter your message...'></textarea>
                     </div>
-                    <button type="submit" className='w-full py-3 px-4 bg-linear-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-xl shadow-lg transition'>Send Notification</button>
+                    <button type="submit" className='w-full py-3 px-4 bg-linear-to-r from-blue-600 to-blue-700 hover:from-blue-500 text-white font-semibold rounded-xl shadow-lg transition'>Send Notification</button>
                 </form>
             </div>
 
@@ -76,4 +75,4 @@ const Notifications = () => {
     );
 }
 
-export default Notifications
+export default Notifications;

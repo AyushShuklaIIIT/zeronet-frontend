@@ -1,13 +1,5 @@
 import React from 'react';
-import { 
-    Upload, 
-    FileText, 
-    Video, 
-    HelpCircle, 
-    AlignLeft, 
-    Edit, 
-    Trash2 
-} from 'lucide-react';
+import { Upload, FileText, Video, HelpCircle, AlignLeft, Edit, Trash2, Library } from 'lucide-react';
 
 const Lessons = ({ user }) => {
     const isAdmin = user?.role === 'admin';
@@ -20,9 +12,7 @@ const Lessons = ({ user }) => {
         { title: 'English Grammar - Tenses', author: 'Mrs. Gupta', type: 'Text', color: 'amber', subject: 'English', target: 'Class 9A, 9B, 9C', status: 'Synced', statusColor: 'emerald' },
     ];
 
-    const displayedLessons = isAdmin 
-        ? allLessons 
-        : allLessons.filter(lesson => lesson.author === loggedInTeacherName);
+    const displayedLessons = isAdmin ? allLessons : allLessons.filter(lesson => lesson.author === loggedInTeacherName);
 
     const colorStyles = {
         blue: { bg: 'rgba(59, 130, 246, 0.2)', text: '#60a5fa' },
@@ -43,21 +33,21 @@ const Lessons = ({ user }) => {
 
     return (
         <div className='fade-in'>
-            <div className='flex items-center justify-between mb-6'>
-                <div className='flex items-center gap-4'>
-                    <select className='bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
+            <div className='flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 mb-6'>
+                <div className='flex flex-wrap items-center gap-3 w-full lg:w-auto'>
+                    <select className='w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
                         <option>All Types</option>
                         <option>PDFs</option>
                         <option>Videos</option>
                         <option>Quizzes</option>
                     </select>
-                    <select className='bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
+                    <select className='w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
                         <option>All Subjects</option>
                         <option>Mathematics</option>
                         <option>Science</option>
                         <option>English</option>
                     </select>
-                    <select className='bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
+                    <select className='w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
                         <option>All Status</option>
                         <option>Synced</option>
                         <option>Pending Sync</option>
@@ -65,15 +55,15 @@ const Lessons = ({ user }) => {
                     </select>
                 </div>
                 
-                <button className='flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl transition'>
-                    <Upload className="w-5 h-5" />
+                <button className='w-full lg:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl transition'>
+                    <Upload className="w-5 h-5 shrink-0" />
                     Upload Content
                 </button>
             </div>
 
             <div className='bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden'>
                 <div className="overflow-x-auto">
-                    <table className='w-full'>
+                    <table className='w-full min-w-175'>
                         <thead className='bg-slate-700/50'>
                             <tr>
                                 <th className='px-6 py-4 text-left text-sm font-semibold text-slate-300'>Title</th>
@@ -114,12 +104,12 @@ const Lessons = ({ user }) => {
                                                 {lesson.type}
                                             </span>
                                         </td>
-                                        <td className='px-6 py-4 text-slate-300'>{lesson.subject}</td>
-                                        <td className='px-6 py-4 text-slate-300'>{lesson.target}</td>
-                                        <td className='px-6 py-4'>
+                                        <td className='px-6 py-4 text-slate-300 whitespace-nowrap'>{lesson.subject}</td>
+                                        <td className='px-6 py-4 text-slate-300 whitespace-nowrap'>{lesson.target}</td>
+                                        <td className='px-6 py-4 whitespace-nowrap'>
                                             <span className='flex items-center gap-2 text-sm' style={{ color: statusColors.text }}>
                                                 <span 
-                                                    className={`w-2 h-2 rounded-full ${lesson.status === 'In Use' ? 'pulse-dot' : ''}`}
+                                                    className={`w-2 h-2 rounded-full shrink-0 ${lesson.status === 'In Use' ? 'pulse-dot' : ''}`}
                                                     style={{ backgroundColor: statusColors.text }}
                                                 ></span>
                                                 {lesson.status}

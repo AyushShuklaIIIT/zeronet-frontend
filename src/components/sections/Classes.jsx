@@ -13,9 +13,7 @@ const Classes = ({ user }) => {
         { name: 'Class 10A', status: 'Active', color: 'rose', teacher: 'Mrs. Gupta', students: 38, subjects: 'All Subjects' },
     ];
 
-    const displayedClasses = isAdmin 
-        ? allClasses 
-        : allClasses.filter(cls => cls.teacher === loggedInTeacherName);
+    const displayedClasses = isAdmin ? allClasses : allClasses.filter(cls => cls.teacher === loggedInTeacherName);
 
     const gradientMap = {
         blue: ['#3b82f6', '#1d4ed8'],
@@ -27,14 +25,14 @@ const Classes = ({ user }) => {
 
     return (
         <div className='fade-in'>
-            <div className='flex items-center justify-between mb-6'>
-                <div className='flex items-center gap-4'>
-                    <select className='bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
+            <div className='flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6'>
+                <div className='flex flex-wrap items-center gap-3 w-full sm:w-auto'>
+                    <select className='w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
                         <option>All Grades</option>
                         <option>Grade 6</option>
                         <option>Grade 7</option>
                     </select>
-                    <select className='bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
+                    <select className='w-full sm:w-auto bg-slate-700 border border-slate-600 rounded-xl px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-blue-500'>
                         <option>All Subjects</option>
                         <option>Mathematics</option>
                         <option>Science</option>
@@ -42,14 +40,14 @@ const Classes = ({ user }) => {
                 </div>
 
                 {isAdmin && (
-                    <button className='flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl transition'>
-                        <Plus className="w-5 h-5" />
+                    <button className='w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-xl transition'>
+                        <Plus className="w-5 h-5 shrink-0" />
                         Add Class
                     </button>
                 )}
             </div>
 
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'>
                 {displayedClasses.map((cls, idx) => {
                     const hexGrad = gradientMap[cls.color];
                     return (
@@ -65,16 +63,16 @@ const Classes = ({ user }) => {
                                 </div>
                                 <div className='space-y-3 mb-6 flex-1'>
                                     <div className='flex items-center gap-2 text-slate-400 text-sm'>
-                                        <User className="w-4 h-4" />
-                                        <span>{cls.teacher}</span>
+                                        <User className="w-4 h-4 shrink-0" />
+                                        <span className="truncate">{cls.teacher}</span>
                                     </div>
                                     <div className='flex items-center gap-2 text-slate-400 text-sm'>
-                                        <Users className="w-4 h-4" />
+                                        <Users className="w-4 h-4 shrink-0" />
                                         <span>{cls.students} Students</span>
                                     </div>
                                     <div className='flex items-center gap-2 text-slate-400 text-sm'>
-                                        <BookOpen className="w-4 h-4" />
-                                        <span>{cls.subjects}</span>
+                                        <BookOpen className="w-4 h-4 shrink-0" />
+                                        <span className="truncate">{cls.subjects}</span>
                                     </div>
                                 </div>
                                 <div className='flex gap-2 mt-auto'>
